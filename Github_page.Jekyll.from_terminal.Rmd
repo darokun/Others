@@ -1,14 +1,14 @@
 ---
 title: "Initialize a GitHub page with Jekyll from Terminal"
-author: "Daloha Rodr&acute;guez-Molina"
+author: "Daloha Rodr&iacute;guez-Molina"
 date: "October 30, 2015"
 output: html_document
 ---
 
-* 1. Create new repo on GitHub (e.g. name_of_repo)
+* 1 Create new repo on GitHub (e.g. name_of_repo)
 
 
-* 2. Create folder in computer:
+* 2 Create folder in computer:
 
 ```
 mkdir name_of_repo
@@ -21,13 +21,13 @@ git remote add origin ssh_line_from_github
 git push -u origin master
 ```
 
-* 3. Create a new gh-pages branch and go back to master
+* 3 Create a new gh-pages branch and go back to master
 ```
 git checkout -b gh-pages
 git checkout master
 ```
 
-* 4. To install jekyll (using bundle)
+* 4 To install jekyll (using bundle)
 (according to [this](https://help.github.com/articles/using-jekyll-with-pages/) url)
 
 ```
@@ -35,7 +35,7 @@ echo "source 'http://rubygems.org' gem 'github-pages'"
 bundle install
 ```
 
-* 5. If there are issues with nokogiri, ignore flag (as seen [here](http://stackoverflow.com/questions/19643153/error-to-install-nokogiri-on-osx-10-9-maverick)):
+* 5 If there are issues with nokogiri, ignore flag (as seen [here](http://stackoverflow.com/questions/19643153/error-to-install-nokogiri-on-osx-10-9-maverick)):
 ```
  sudo ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future gem install nokogiri -v '1.6.6.2' --verbose --no-ri --no-rdoc
 ```
@@ -44,7 +44,7 @@ and then install jekyll using bundle:
 bundle install
 ```
 
-* 6. If bundle advises to filter dependencies, make the Gemfile look like this:
+* 6 If bundle advises to filter dependencies, make the Gemfile look like this:
 ```
 source 'http://rubygems.org' 
 gem 'github-pages'
@@ -80,10 +80,10 @@ group :test do
 end
 ```
 
-* 7. Build Webpage as desired
+* 7 Build Webpage as desired
 
 
-* 8. Go to your `gh-pages` branch and run Jekyll (using bundle):
+* 8 Go to your `gh-pages` branch and run Jekyll (using bundle):
 ```
 gir checkout gh-pages
 bundle exec jekyll serve
