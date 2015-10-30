@@ -1,0 +1,100 @@
+---
+title: "Initialize a GitHub Page using Jekyll Bootstrap"
+author: "Daloha Rodr&iacute;guez-Molina"
+date: "October 30, 2015"
+output: html_document
+---
+
+* 1 Create a new repo on GitHub (e.g. project-name)
+
+* 2 Clone Jekyll Bootstrap into the new repo created in #1, and cd to it:
+```
+git clone https://github.com/plusjade/jekyll-bootstrap.git project-name
+cd new_repo
+```
+
+* 3 create the `Gemfile`:
+```
+touch Gemfile
+```
+
+* 4 Open the `Gemfile` in Sublime 2 and fill it with this info:
+```
+source 'https://rubygems.org'
+
+require 'json'
+require 'open-uri'
+versions = JSON.parse(open('https://pages.github.com/versions.json').read)
+
+gem 'github-pages', versions['github-pages']
+```
+
+* 5 Modify the `_config.yml` file as needed, adding the desired info:
+```
+# Themes are encouraged to use these universal variables 
+# so be sure to set them if your theme uses them.
+#
+title : Jekyll Bootstrap
+tagline: Site Tagline
+author :
+  name : Name Lastname
+  email : blah@email.test
+  github : username
+  twitter : username
+  feedburner : feedname
+```
+Also, add the `project-name` to the `BASE-PATH` option:
+```
+BASE_PATH : http://username.github.io/project-name
+```
+reference JS or CSS file as follows:
+```
+{{ baseurl }}/path/to/css.css
+```
+(note the slash immediately following the variable (just before ???path???).)
+Do this for permalinks or internal links:
+```
+{{ baseurl }}{{ post.url }}
+```
+note that there is **no** slash between the two variables.
+Finally, if you???d like to preview your site before committing/deploying using `jekyll serve`, be sure to pass an empty string to the `--baseurl` option, so that you can view everything at `localhost:4000` normally (without `/project-name` at the beginning): `jekyll serve --baseurl ''`
+This way you can preview your site locally from the site root on localhost, but when GitHub generates your pages from the gh-pages branch all the URLs will start with `/project-name` and resolve properly.
+
+Then, modify the `production_url` line as needed:
+```
+production_url : http://username.github.io/repo_name
+```
+
+* 6 Modify the index.md file as desired
+
+* 7 Change the theme as desired: (using jekyll slate from github as example). It'll automatically ask if want to switch.
+```
+rake theme:install git="https://github.com/boxersb/jekyll-theme-slate"
+```
+If installing the theme locally, download the theme information into the `./_theme_packages` folder, and run the installer with the name:
+```
+rake theme:install name="THEME-NAME"
+```
+and then switch to the newly-installed theme:
+```
+rake theme:switch name="the-program"
+```
+
+* 7 Preview the site locally:
+```
+jekyll serve --baseurl ''
+```
+
+* 8 Commit and push changes to the `master` branch:
+```
+git add .
+git commit -m "first commit"
+git push origin master
+```
+and -if needed- to the `gh-pages` branch:
+```
+git push origin gh-pages
+```
+**Note: Jekyll Bootstrap works on the `master` branch, not the `gh-pages` one!!**
+
+
