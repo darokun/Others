@@ -82,7 +82,7 @@ rake theme:switch name="the-program"
 
 * 7 Preview the site locally:
 ```
-jekyll serve --baseurl ''
+bundle exec jekyll serve --baseurl
 ```
 
 * 8 Commit and push changes to the `master` branch:
