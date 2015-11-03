@@ -80,6 +80,8 @@ As seen, the positions where the ones are in the binary system correspond to val
 
 And that's why 11001000 = 200 &#9786;
 
+* If you want to recreate this in R, check the code at [this link](https://github.com/darokun/Others/blob/master/BinarySystemR.R).
+
 #### Bonus:
 * We can count from zero to five in base-10 with the fingers of one hand, but in binary we can count up to 31 using the same five fingers!
 * For more info, and further explanations, check out the first 2 minutes of this cool YouTube video: [Binary Numbers and Base Systems as Fast as Possible](https://www.youtube.com/watch?v=LpuPe81bc2w)
