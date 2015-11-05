@@ -9,7 +9,9 @@
 # setwd("Z:/Lehre/QuantitativeMethods 2014/Dataproject2014")
 
 ## Load the shadenorm.R function file
-source("~/Dropbox/Public/R wd/shadenorm.R")
+#install.packages("devtools")
+library(devtools)
+source_gist("https://gist.github.com/darokun/4b46647e4ac81e7027be", sha1="939373fb63ad402586d1704875f363af460777d7")
 
 ## Parameters of the Problem ##
 
