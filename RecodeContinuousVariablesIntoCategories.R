@@ -57,6 +57,10 @@ summary(age.cat4)                                     # check variable
 
 #----
 
+# First, detach and re-attach your data to avoid any errors:
+detach(tab)
+attach(tab)       # you'll get a warning that you can ignore
+
 # Check that all four new variables are equivalent:
 rbind(table(age.cat1), table(age.cat2), table(age.cat3), table(age.cat4))
 
