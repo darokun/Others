@@ -240,7 +240,7 @@ mean.x
 
 ## Bonus
 * For a more detailed explanation on how to derive the equations, check out this [YouTube video](https://www.youtube.com/watch?v=-iYDu8flFXQ).
-* You can find the R Scripts for this entry: [fig.1](https://github.com/darokun/Others/blob/master/NDistPlotForCI.R), [fig.2](https://github.com/darokun/Others/blob/master/tDistAgainstNormalPlot.R), [Confidence Interval Estimation](https://github.com/darokun/Others/blob/master/ConfidenceIntervalsEstimation.R).
+* You can find the R Scripts for this entry: [fig.1](https://github.com/darokun/Others/blob/master/NDistPlotForCI.R), [fig.2](https://github.com/darokun/Others/blob/master/tDistAgainstNormalPlot.R), [Confidence Interval Estimation](https://github.com/darokun/Others/blob/master/ConfidenceIntervalsEstimation.R), [RMarkdown](https://github.com/darokun/Others/blob/master/ConfidenceIntervalsEstimation.Rmd).
 
 ##### End of script
 
