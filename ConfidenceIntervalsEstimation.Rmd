@@ -105,65 +105,50 @@ text(2.35, -0.1, expression(alpha))
 text(2.60, -0.1, "/2)")
 ```
 
-
 ### With known variance
 When we know the variance, we can use the standard normal distribution (Gauss distribution) and the `qnorm` function to estimate our confidence intervals.
 
-Let's assume that our point estimate value is called `z`, which in the plots above should be along the x axis somewhere in the turquoise area (1 - &alpha;). We want to construct confidence intervals around this point estimate. The confidence intervals will be located at the line between the turquoise and the orange sections.
+Let's assume that our point estimate value is called `z`, which in the plots above should be along the x axis somewhere in the turquoise area (1 - $\alpha$). We want to construct confidence intervals around this point estimate. The confidence intervals will be located at the line between the turquoise and the orange sections.
 
 In the specific case of constructing 95% CI (left plot), we assume that our point estimate `z` will be between the lower and upper bound of the confidence interval, which in the z-scale with `mean = 0` correspond to `-1.96` and `+1.96`, respectively. For the general case (right plot), the formula is:
 
-$$\begin{equation}
-Pr\biggl[\ qnorm\left(\frac{\alpha}{2}\right)\  <\  z\  
-<\  qnorm\left(1-\frac{\alpha}{2}\right)\ \biggl] = 1 - \alpha
-\end{equation}$$
+$$Pr\biggl[\ qnorm\left(\frac{\alpha}{2}\right)\  <\  z\  
+<\  qnorm\left(1-\frac{\alpha}{2}\right)\ \biggl] = 1 - \alpha$$
 
 From here, we can start to mathematically derive the whole thing. First, we should remember that `z` can also be expressed as:
 
-$$\begin{equation}
-z = \frac{\overline{x}-\mu}{
-\sqrt{\frac{\sigma^2}{n}}}
-\end{equation}$$
+$$z = \frac{\overline{x}-\mu}{
+\sqrt{\frac{\sigma^2}{n}}}$$
 
 Then, we can subtitute `z` in the first equation with the value of the second equation:
 
-$$\begin{equation}
-Pr\biggl[\ qnorm\left(\frac{\alpha}{2}\right)  <\  
+$$Pr\biggl[\ qnorm\left(\frac{\alpha}{2}\right)  <\  
 \frac{\overline{x}-\mu}{
 \sqrt{\frac{\sigma^2}{n}}}
-<\  qnorm\left(1-\frac{\alpha}{2}\right)\ \biggl] = 1 - \alpha
-\end{equation}$$
+<\  qnorm\left(1-\frac{\alpha}{2}\right)\ \biggl] = 1 - \alpha$$
 
 
 Now we want to leave our ?? alone, so we do a little bit of algebra, and we end up with:
 
-$$\begin{equation}
-Pr\biggl[
+$$Pr\biggl[
 \overline{x} - qnorm\left(1-\frac{\alpha}{2}\right) 
 \times \sqrt{\frac{\sigma^2}{n}}  >\
 \mu >\  \overline{x} + qnorm\left(1-\frac{\alpha}{2}\right)
 \times \sqrt{\frac{\sigma^2}{n}}
-\biggl] = 1 - \alpha
-\end{equation}$$
+\biggl] = 1 - \alpha$$
 
 Finally, since the standard normal distribution is symmetric, we can collapse both sides of the inequality using a $\pm$ sign:
 
-$$\begin{equation}
-CI_{1-\alpha/2} = \overline{x} \pm qnorm\left(1-\frac{\alpha}{2}\right) 
-\times \sqrt{\frac{\sigma^2}{n}}
-\end{equation}$$
+$$CI_{1-\alpha/2} = \overline{x} \pm qnorm\left(1-\frac{\alpha}{2}\right) 
+\times \sqrt{\frac{\sigma^2}{n}}$$
 
 Where the lower bound results from the subtraction, and the upper bound results from the sum between the terms:
 
-$$\begin{equation}
-LowerCI_{1-\alpha/2} = \overline{x} - qnorm\left(1-\frac{\alpha}{2}\right) 
-\times \sqrt{\frac{\sigma^2}{n}}
-\end{equation}$$
+$$LowerCI_{1-\alpha/2} = \overline{x} - qnorm\left(1-\frac{\alpha}{2}\right) 
+\times \sqrt{\frac{\sigma^2}{n}}$$
 
-$$\begin{equation}
-UpperCI_{1-\alpha/2} = \overline{x} + qnorm\left(1-\frac{\alpha}{2}\right) 
-\times \sqrt{\frac{\sigma^2}{n}}
-\end{equation}$$
+$$UpperCI_{1-\alpha/2} = \overline{x} + qnorm\left(1-\frac{\alpha}{2}\right) 
+\times \sqrt{\frac{\sigma^2}{n}}$$
 
 ---
 
@@ -183,7 +168,7 @@ n.x <- 100                                    # sample size is 100
 sd.x <- 2                                     # standard deviation is known, and it is 2
 low <- mean.x - qnorm(0.975)*sd.x/sqrt(n.x)     # low bound of the CI
 up <- mean.x + qnorm(0.975)*sd.x/sqrt(n.x)      # high bound of the CI
-c(low,up)                                   # look at both lower and upper bound of the confidence interval
+c(low,up)                                   # look at both lower and upper bound of the CI
 ```
 
 Look how the mean of x is within the boundaries:
@@ -195,6 +180,8 @@ mean.x
 ### With unknown variance
 
 For the unknown variance the procedure is pretty much the same, except that now we want to use the Student's t distribution because we need to take into account **extra uncertainty** from the fact that **we don't know** what the variance is:
+\
+
 
 ```{r echo=FALSE}
 par(mfrow=c(1,1))
@@ -230,14 +217,14 @@ low <- mean.x - qt(0.975)*2/sqrt(n)
 
 So, we can use the same example as before:
 ```{r}
-set.seed(42)                          # set the seed to always generate the same 'random' sequence
+set.seed(42)                                  # Always generate the same 'random' sequence
 x <- rnorm(100,mean=1,sd=2)                   # generate sequence and store it in x
 mean.x <- mean(x)                             # calculate mean of x and store in mean.x
 n.x <- 100                                    # sample size is 100
-sd.x <- sd(x)                                 # standard deviation is not known, so we estimate it from x
+sd.x <- sd(x)                                 # standard deviation is not known
 low <- mean.x - qnorm(0.975)*sd.x/sqrt(n.x)   # low bound of the CI
 up <- mean.x + qnorm(0.975)*sd.x/sqrt(n.x)    # high bound of the CI
-c(low,up)                                     # look at both lower and upper bound of the confidence interval
+c(low,up)                                     # look at both lower and upper bound of the CI
 ```
 
 Notice how now the confidence intervals are wider than before, and the mean of x is still within the boundaries:
@@ -253,6 +240,7 @@ mean.x
 
 ## Bonus
 * For a more detailed explanation on how to derive the equations, check out this [YouTube video](https://www.youtube.com/watch?v=-iYDu8flFXQ).
-* You can find the R Scripts for this entry: [fig.1](), [fig.2](), [Confidence Interval Estimation]().
+* You can find the R Scripts for this entry: [fig.1](https://github.com/darokun/Others/blob/master/NDistPlotForCI.R), [fig.2](https://github.com/darokun/Others/blob/master/tDistAgainstNormalPlot.R), [Confidence Interval Estimation](https://github.com/darokun/Others/blob/master/ConfidenceIntervalsEstimation.R).
 
 ##### End of script
+
