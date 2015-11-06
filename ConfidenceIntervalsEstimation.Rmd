@@ -128,7 +128,7 @@ $$Pr\biggl[\ qnorm\left(\frac{\alpha}{2}\right)  <\
 <\  qnorm\left(1-\frac{\alpha}{2}\right)\ \biggl] = 1 - \alpha$$
 
 
-Now we want to leave our ?? alone, so we do a little bit of algebra, and we end up with:
+Now we want to leave our $\mu$ alone, so we do a little bit of algebra, and we end up with:
 
 $$Pr\biggl[
 \overline{x} - qnorm\left(1-\frac{\alpha}{2}\right) 
