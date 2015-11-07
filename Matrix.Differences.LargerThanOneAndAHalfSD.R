@@ -32,6 +32,17 @@ for(i in 1:length(difference)) {
   }
 }
 
+x <- c(0,1)
 
+
+par(xpd=)
+
+x <- sample(x,85, replace=TRUE)
+x <- as.logical(x)
+data <- matrix(x, nrow=5, ncol=17)
+data 
+image(data, col=c("coral", "dark turquoise"), main="title")
+par(xpd=TRUE)
+legend(1,1.25, legend=c("1", "2"), col=c("coral", "dark turquoise"), pch=20)
 
 
