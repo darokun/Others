@@ -1,0 +1,25 @@
+---
+title: 'Lecture notes: Everything I wish I knew when I started using GitHub'
+author: "Daloha Rodr&iacute;guez-Molina"
+date: "November 8, 2015"
+output: html_document
+---
+
+Original lecture: found [here](https://www.youtube.com/watch?v=KDUtjZHIx44)
+
+* Easily get GitHub's profile picture url: add .png to your github profile url. E.g. [http://github.com/darokun.png](http://github.com/darokun.png)
+
+* Get shortened urls for repos: 
+1. Install from command line: `gem install gitio`
+2. Shrink: e.g. `gitio shrink https://github.com/darokun/Others`
+3. Open link: `open http://git.io/v80Ow`
+
+* Gists may have several files. They can't have pull requests/issues, but they do have branches and support multiple files. E.g.: tony91782's GraphingStatisticalPower.R:
+1. Clone the first gist: `git clone https://gist.github.com/tony91782/950807 GenerateStatisticalPower` (name it with something meaningful)
+2. Go to the directory: `cd GenerateStatisticalPower`
+3. Make changes. E.g. add a readme: `echo "# Hello World" > README.md`, `git add REAME.md`, `git commit -m "first commit"`, `git push`.
+4. Enjoy multiple files on Gist.
+
+* Create issues with checkboxes for to-do items. Just add `[ ]` to the md file of the issue.
+
+#### End of script
