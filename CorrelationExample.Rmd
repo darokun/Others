@@ -1,0 +1,89 @@
+---
+title: "Correlation Example"
+author: "Daloha Rodr&iacute;guez-Molina"
+date: "January 11, 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+## numbers >= 10^5 will be denoted in scientific notation,
+## and rounded to 2 digits
+options(scipen = 1, digits = 2)
+```
+
+## Correlation example
+
+This is a simple correlation example I made up about a fictional case in IG. The hypothesis states that the larger the number of posts, the larger the number of followers.
+
+#### 1. Generate random data
+First, I'll generate 30 random observations for a variable called `n.posts` that stores the number of posts, and 30 matching observations for the number of followers stored in a variable called `n.followers`:
+
+```{r}
+set.seed(350)
+n.posts <- abs(round(rnorm(n = 30, mean = 350, sd = 350), 0))
+set.seed(700)
+n.followers <- abs(round(rnorm(n = 30, mean = 350, sd = 350), 0))
+cbind(n.posts, n.followers) # show data
+```
+
+#### 2. Including Plots
+We generate scatterplots for each of our made-up variables:
+
+```{r}
+plot(n.posts)
+plot(n.followers)
+```
+
+#### 3. Perform correlation:
+``` {r}
+x <- cor.test(n.posts, n.followers)
+```
+We can observe that the correlation is somewhat weak, because the correlation is roughly $`r round(x$estimate,2)*100`$%, the p-value is $`r round(x$p.value,4)`$, and the 95%CI crosses the null value ($`r round(x$conf.int,2)[1]`$ ; $`r round(x$conf.int,2)[2]`$).
+
+#### 4. Sort in ascending order and repeat:
+Now, we want to sort both variables in ascending order to generate an artificial positive correlation. The data we now obtain looks like this:
+```{r}
+n.posts <- sort(n.posts)
+n.followers <- sort(n.followers)
+cbind(n.posts, n.followers) # show data
+```
+
+The plots look like this:
+```{r}
+plot(n.posts) # scatterplots
+plot(n.followers)
+```
+
+And running the correlation test
+```{r}
+x <- cor.test(n.posts, n.followers) # (highly significant)
+```
+we now observe that there is a very high and statistically significant positive correlation of $`r round(x$estimate,2)*100`$% (p-value: $`r x$p.value`$, 95%CI: $`r round(x$conf.int,2)[1]`$ ; $`r round(x$conf.int,2)[2]`$).
+
+#### 5. Sort in descending order
+We now want to generate an artificial negative correlation by sorting one of the variables (`n.posts`) in descending order:
+```{r}
+n.posts <- sort(n.posts, decreasing = TRUE)
+n.followers <- sort(n.followers)
+cbind(n.posts, n.followers) # show data
+```
+
+The scatterplots look like this:
+```{r}
+plot(n.posts) # scatterplots
+plot(n.followers)
+```
+
+And the correlation test
+```{r}
+x <- cor.test(n.posts, n.followers) # (highly significant)
+```
+shows that there is a very strong and statistically significant negative correlation of $`r round(x$estimate,2)*100`$% (p-value: $`r x$p.value`$, 95%CI: $`r round(x$conf.int,2)[1]`$ ; $`r round(x$conf.int,2)[2]`$).
+
+#### 6. Linear regression
+Lastly, we regress `n.followers` against `n.posts`:
+```{r}
+lm.ig <- lm(n.followers ~ n.posts)
+summary(lm.ig)
+```
